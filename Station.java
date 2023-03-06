@@ -5,4 +5,10 @@ public class Station {
     this.nom = nom;
   }
 
+  @Override
+  public String toString() {
+    return "Station{" +
+        "nom='" + nom + '\'' +
+        '}';
+  }
 }
