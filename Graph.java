@@ -3,15 +3,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Graph {
 
-  private Set stationsSet;
-  private List<Troncon> listeTroncons;
+  private Set<Station> stationsSet;
+  private Map<Station,Station> mapTroncons;
 
   public Graph(File lignes, File troncons) throws IOException {
     FileReader frLignes = new FileReader(lignes);
@@ -19,7 +21,7 @@ public class Graph {
     FileReader frTroncons = new FileReader(troncons);
     BufferedReader brTroncons = new BufferedReader(frTroncons);
     stationsSet = new HashSet();
-    listeTroncons = new LinkedList();
+    mapTroncons = new HashMap<>();
     String st;
     String[] tabTroncons;
 
@@ -30,7 +32,7 @@ public class Graph {
       stationsSet.add(depart);
       stationsSet.add(arrivee);
       Troncon troncon = new Troncon(Integer.parseInt(tabTroncons[0]), depart, arrivee, Integer.parseInt(tabTroncons[3]));
-      listeTroncons.add(troncon);
+      mapTroncons.put(arrivee,depart);
     }
 
   }
