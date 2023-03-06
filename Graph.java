@@ -10,9 +10,9 @@ public class Graph {
   }
 
 
-  public void calculerCheminMinimisantNombreTroncons(String boileau, String alma) {
+  public void calculerCheminMinimisantNombreTroncons(String depart, String arrivee) {
   }
 
-  public void calculerCheminMinimisantTempsTransport(String boileau, String alma) {
+  public void calculerCheminMinimisantTempsTransport(String depart, String arrive) {
   }
 }
