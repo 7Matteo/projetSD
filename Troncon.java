@@ -12,6 +12,14 @@ public class Troncon {
     this.duree = duree;
   }
 
+  public Station getStationDepart() {
+    return stationDepart;
+  }
+
+  public Station getStationArrivee() {
+    return stationArrivee;
+  }
+
   @Override
   public String toString() {
     return "Troncon{" +
