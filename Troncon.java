@@ -20,13 +20,20 @@ public class Troncon {
     return stationArrivee;
   }
 
+  public int getIdLigne() {
+    return idLigne;
+  }
+
+  public int getDuree() {
+    return duree;
+  }
+
   @Override
   public String toString() {
-    return "Troncon{" +
-        "idLigne=" + idLigne +
-        ", stationDepart=" + stationDepart.toString()+
-        ", stationArrivee=" + stationArrivee.toString()+
+    return "Troncon[" +
+        "depart=" + stationDepart.toString()+
+        ", arrivee=" + stationArrivee.toString()+
         ", duree=" + duree +
-        '}';
+        " ligne=";
   }
 }

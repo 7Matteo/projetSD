@@ -1,24 +1,35 @@
 public class Ligne {
 
   private int identifiant;
-  private int numero;
-  private Station  stationDepart;
-  private Station stationArrivee;
-  private Transport transport;
+  private String numero;
+  private Station  terminusDepart;
+  private Station terminusArrivee;
+  private String transport;
   private int tempsAttenteMoyen;
 
-  public Ligne(int identifiant, int numero, Station stationDepart, Station stationArrivee,
-      Transport transport, int tempsAttenteMoyen) {
+  public Ligne(int identifiant, String numero, Station terminusDepart, Station terminusArrivee,
+      String transport, int tempsAttenteMoyen) {
     this.identifiant = identifiant;
     this.numero = numero;
-    this.stationDepart = stationDepart;
-    this.stationArrivee = stationArrivee;
+    this.terminusDepart = terminusDepart;
+    this.terminusArrivee = terminusArrivee;
     this.transport = transport;
     this.tempsAttenteMoyen = tempsAttenteMoyen;
   }
 
-  enum Transport {
-    bus,tram,metro;
+  public int getTempsAttenteMoyen() {
+    return tempsAttenteMoyen;
   }
 
+  @Override
+  public String toString() {
+    return "Ligne[" +
+        "id=" + identifiant +
+        ", numero='" + numero + '\'' +
+        ", source=" + terminusDepart +
+        ", destination=" + terminusArrivee +
+        ", type='" + transport + '\'' +
+        ", tempsAttenteMoyen=" + tempsAttenteMoyen +
+        "]]";
+  }
 }

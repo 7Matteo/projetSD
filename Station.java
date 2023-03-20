@@ -9,9 +9,7 @@ public class Station {
 
   @Override
   public String toString() {
-    return "Station{" +
-        "nom='" + nom + '\'' +
-        '}';
+    return nom;
   }
 
   @Override
@@ -30,4 +28,6 @@ public class Station {
   public int hashCode() {
     return Objects.hash(nom);
   }
+
+
 }
