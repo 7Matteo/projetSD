@@ -102,6 +102,7 @@ public class Graph {
 
     int dureeTransport = 0;
     int dureeTotale = 0;
+    int nbTroncons = 0;
     Set<Ligne> lignesUtilisees = new HashSet<>();
 
     for (Troncon t : chemin) {
@@ -109,6 +110,7 @@ public class Graph {
       lignesUtilisees.add(ligneUtilisee);
       dureeTransport += t.getDuree();
       System.out.println(t + mapLignes.get(t.getIdLigne()).toString());
+      nbTroncons++;
     }
 
     for (Ligne l : lignesUtilisees){
@@ -116,7 +118,7 @@ public class Graph {
     }
 
     dureeTotale += dureeTransport;
-
+    System.out.println("nbTroncons=" + nbTroncons);
     System.out.println("dureeTransport=" + dureeTransport);
     System.out.println("dureeTotale=" + dureeTotale);
 
@@ -134,8 +136,11 @@ public class Graph {
     etiquetteDefinitive.put(stationCourante,0);
     ArrayList<Troncon> chemin = new ArrayList<>();
 
-    int dureeMin = 0;
 
+
+
+    //algo
+    int dureeMin = 0;
     while(!stationCourante.equals(stationArrivee)){
 
       Station stationMin = null;
@@ -161,8 +166,10 @@ public class Graph {
 
 
     }
-    System.out.println(etiquetteDefinitive);
 
+
+
+    //affichage du chemin
     Station stationDepart = new Station(depart);
 
     while (!stationArrivee.equals(stationDepart)){
@@ -176,13 +183,27 @@ public class Graph {
     }
 
     Collections.reverse(chemin);
-
+    int dureeTransport = 0;
+    int dureeTotale = 0;
+    int nbTronçons = 0;
+    Set<Ligne> lignesUtilisees = new HashSet<>();
 
     for (Troncon t : chemin) {
+      Ligne ligneUtilisee = mapLignes.get(t.getIdLigne());
+      lignesUtilisees.add(ligneUtilisee);
+      dureeTransport += t.getDuree();
       System.out.println(t + mapLignes.get(t.getIdLigne()).toString());
+      nbTronçons++;
     }
 
+    for (Ligne l : lignesUtilisees){
+      dureeTotale += l.getTempsAttenteMoyen();
+    }
 
+    dureeTotale += dureeTransport;
+    System.out.println("nbTroncons=" + nbTronçons);
+    System.out.println("dureeTransport=" + dureeTransport);
+    System.out.println("dureeTotale=" + dureeTotale);
 
   }
 }
