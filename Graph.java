@@ -132,6 +132,7 @@ public class Graph {
     Station stationArrivee = mapStations.get(arrivee);
     etiquetteProvisoire.put(stationCourante,Integer.MAX_VALUE);
     etiquetteDefinitive.put(stationCourante,0);
+    ArrayList<Troncon> chemin = new ArrayList<>();
 
     int dureeMin = 0;
 
@@ -163,10 +164,22 @@ public class Graph {
     System.out.println(etiquetteDefinitive);
 
     Station stationDepart = new Station(depart);
-    System.out.println(stationArrivee);
-    while(!stationArrivee.equals(stationDepart)) {
-      System.out.println(stationPrecedentes.get(stationArrivee));
+
+    while (!stationArrivee.equals(stationDepart)){
+      for (Troncon t: mapTroncons.get(stationPrecedentes.get(stationArrivee))) {
+        if(t.getStationArrivee().equals(stationArrivee)){
+          chemin.add(t);
+          break;
+        }
+      }
       stationArrivee = stationPrecedentes.get(stationArrivee);
+    }
+
+    Collections.reverse(chemin);
+
+
+    for (Troncon t : chemin) {
+      System.out.println(t + mapLignes.get(t.getIdLigne()).toString());
     }
 
 
