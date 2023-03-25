@@ -133,15 +133,21 @@ public class Graph {
     etiquetteProvisoire.put(stationCourante,Integer.MAX_VALUE);
     etiquetteDefinitive.put(stationCourante,0);
 
-    while(true){
-      int dureeMin = Integer.MAX_VALUE;
+    int dureeMin = 0;
+
+    while(!stationCourante.equals(stationArrivee)){
+
       Station stationMin = null;
       for (Troncon troncon : mapTroncons.get(stationCourante)) {
-        etiquetteProvisoire.put(troncon.getStationArrivee(), troncon.getDuree());
+        if(!etiquetteProvisoire.containsKey(troncon.getStationArrivee()) && !etiquetteDefinitive.containsKey(troncon.getStationArrivee())){
+          etiquetteProvisoire.put(troncon.getStationArrivee(), troncon.getDuree() + dureeMin);
+        }else if(etiquetteProvisoire.get(troncon.getStationArrivee()) > (troncon.getDuree() + dureeMin)){
+          etiquetteProvisoire.put(troncon.getStationArrivee(), troncon.getDuree() + dureeMin);
+        }
 
       }
 
-
+      dureeMin = Integer.MAX_VALUE;
       for (Station station : etiquetteProvisoire.keySet()) {
         if(etiquetteProvisoire.get(station) < dureeMin) {
           dureeMin = etiquetteProvisoire.get(station);
@@ -149,11 +155,23 @@ public class Graph {
         }
       }
 
+      etiquetteProvisoire.put(stationMin,Integer.MAX_VALUE);
       etiquetteDefinitive.put(stationMin,dureeMin);
+      stationPrecedentes.put(stationMin, stationCourante);
       stationCourante = stationMin;
 
 
     }
+
+    Station stationDepart = new Station(depart);
+    System.out.println(stationArrivee);
+    while(!stationArrivee.equals(stationDepart)) {
+      System.out.println(stationPrecedentes.get(stationArrivee));
+      stationArrivee = stationPrecedentes.get(stationArrivee);
+    }
+
+
+
   }
 }
 
