@@ -139,9 +139,7 @@ public class Graph {
 
       Station stationMin = null;
       for (Troncon troncon : mapTroncons.get(stationCourante)) {
-        if(!etiquetteProvisoire.containsKey(troncon.getStationArrivee()) && !etiquetteDefinitive.containsKey(troncon.getStationArrivee())){
-          etiquetteProvisoire.put(troncon.getStationArrivee(), troncon.getDuree() + dureeMin);
-        }else if(etiquetteProvisoire.get(troncon.getStationArrivee()) > (troncon.getDuree() + dureeMin)){
+        if((!etiquetteProvisoire.containsKey(troncon.getStationArrivee())  || (etiquetteProvisoire.get(troncon.getStationArrivee()) > (troncon.getDuree() + dureeMin))) && !etiquetteDefinitive.containsKey(troncon.getStationArrivee())){
           etiquetteProvisoire.put(troncon.getStationArrivee(), troncon.getDuree() + dureeMin);
         }
 
@@ -162,6 +160,7 @@ public class Graph {
 
 
     }
+    System.out.println(etiquetteDefinitive);
 
     Station stationDepart = new Station(depart);
     System.out.println(stationArrivee);
